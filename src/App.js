@@ -20,8 +20,6 @@ class App extends React.Component {
                 <div>      
                     <InputLine  />
                 </div>
-
-
                   <Navibar />
               </div>
             );
