@@ -16,9 +16,10 @@ class Original extends React.Component {
         }
     }
     handleInput = (e) => {
-        this.setState({
-            inputValue : e.target.value
-        })
+        const values = e.target.value
+        this.setState(() => ({
+            inputValue : values
+        }))
         // asynchronous !!!
         console.log(this.state.inputValue);
     }
@@ -50,11 +51,13 @@ class Original extends React.Component {
                 <div>
                     {/*How to handle the list : map to the List*/}
                     {this.state.created.map((item, index) => {
-                        return <ToDoItem passInfo={item} fatherIndex={index} deleteItem={this.handleDelet.bind(this)} />
+                        return (<div key={index}><ToDoItem passInfo={item} fatherIndex={index} deleteItem={this.handleDelet.bind(this)} /></div>);
                     })}
 
                 </div>
+                
             </Fragment>
+
         );
     }
 }
