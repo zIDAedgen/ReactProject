@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List} from 'antd';
 import store from '../store';
-
+import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE} from '../store/actionTypes';
 
 
 class AntList extends React.Component {
@@ -15,7 +15,7 @@ class AntList extends React.Component {
 
     handleChange = (e) => {
         const action = {
-            type : 'chage_input',
+            type : CHANGE_INPUT_VALUE,
             value : e.target.value
         }
         store.dispatch(action);
@@ -29,7 +29,7 @@ class AntList extends React.Component {
 
     handleSubmit = () => {
         const action = {
-            type : 'change_todoList',
+            type : ADD_TODO_ITEM,
         }
         store.dispatch(action);
     }
@@ -37,7 +37,7 @@ class AntList extends React.Component {
 
     handleDelete = (index) => {
         const action = {
-            type : 'delete',
+            type : DELETE,
             index 
         }
         store.dispatch(action);
