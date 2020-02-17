@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { Input, Button, List} from 'antd';
 import store from '../store';
 import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE} from '../store/actionTypes';
-
+import {changeInputValue, changeSubmitValue} from '../store/actionCreator';
 
 class AntList extends React.Component {
     constructor(props) {
@@ -14,10 +14,7 @@ class AntList extends React.Component {
     }
 
     handleChange = (e) => {
-        const action = {
-            type : CHANGE_INPUT_VALUE,
-            value : e.target.value
-        }
+        const action = changeInputValue(e.target.value);
         store.dispatch(action);
     }
 
@@ -28,9 +25,7 @@ class AntList extends React.Component {
 
 
     handleSubmit = () => {
-        const action = {
-            type : ADD_TODO_ITEM,
-        }
+        const action = changeSubmitValue();
         store.dispatch(action);
     }
 
