@@ -35,6 +35,14 @@ class AntList extends React.Component {
     }
 
 
+    handleDelete = (index) => {
+        const action = {
+            type : 'delete',
+            index 
+        }
+        store.dispatch(action);
+    }
+
 
 
     render() {
@@ -49,7 +57,7 @@ class AntList extends React.Component {
                     size="large"            
                     bordered
                     dataSource={this.state.created}
-                    renderItem={item => <List.Item>{item}</List.Item>}
+                    renderItem={(item, index) => <List.Item>{item}<Button style={{leftWidth : '150px'}} type="primary" onClick={this.handleDelete.bind(this, index)}>Delete</Button></List.Item>}
     />  
                 </div>
             </div>

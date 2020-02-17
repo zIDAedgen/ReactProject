@@ -1,6 +1,6 @@
 const defaultState = {
     inputValue : '',
-    created : [1, 45]
+    created : []
 };
 
 export default (state = defaultState, action) => {
@@ -15,6 +15,10 @@ export default (state = defaultState, action) => {
             newStateList.created.push(newStateList.inputValue);
             newStateList.inputValue = '';
             return newStateList;
+        case 'delete':
+            const newDelete = JSON.parse(JSON.stringify(state));
+            newDelete.created.splice(action.index, 1);
+            return newDelete;
         default : 
             return state;
 
