@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import 'antd/dist/antd.css';
-import { Input, Button, List} from 'antd';
 import store from '../store';
-import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE} from '../store/actionTypes';
-import {changeInputValue, changeSubmitValue} from '../store/actionCreator';
+import {changeInputValue, changeSubmitValue, deleteItem, initItem, getToDoList} from '../store/actionCreator';
+import AntListUI from './antListUI';
+
+
 
 class AntList extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = store.getState();
@@ -31,10 +32,14 @@ class AntList extends React.Component {
 
 
     handleDelete = (index) => {
-        const action = {
-            type : DELETE,
-            index 
-        }
+        console.log(index);
+        const action = deleteItem(index);
+        store.dispatch(action);
+    }
+
+    componentDidMount = () => {
+        const action = getToDoList();
+        
         store.dispatch(action);
     }
 
@@ -42,20 +47,14 @@ class AntList extends React.Component {
 
     render() {
         return(
-            
-            <div style={{marginTop : '10px', marginLeft : '15px'}}>
-                <Input value = {this.state.inputValue} placeholder="Input Value Here"  onChange={this.handleChange} style={{width : '300px', marginRight : '15px'}} />
-                <Button  onClick={this.handleSubmit} type="danger">Submit</Button>
-                <div>
-                <List
-                    style={{width : '300px'}}
-                    size="large"            
-                    bordered
-                    dataSource={this.state.created}
-                    renderItem={(item, index) => <List.Item>{item}<Button style={{leftWidth : '150px'}} type="primary" onClick={this.handleDelete.bind(this, index)}>Delete</Button></List.Item>}
-    />  
-                </div>
-            </div>
+            <AntListUI 
+
+            inputValue={this.state.inputValue}
+            handleChange = {this.handleChange}
+            handleSubmit = {this.handleSubmit}
+            handleDelete = {this.handleDelete}
+            created = {this.state.created}
+            />
         );
     }
 }

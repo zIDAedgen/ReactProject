@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE} from './actionTypes';
+import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE, INIT} from './actionTypes';
 
 
 
@@ -22,8 +22,13 @@ export default (state = defaultState, action) => {
             return newStateList;
         case DELETE:
             const newDelete = JSON.parse(JSON.stringify(state));
+            console.log(action.index);
             newDelete.created.splice(action.index, 1);
             return newDelete;
+        case INIT:
+            const newInit = JSON.parse(JSON.stringify(state));
+            newInit.created = action.dataList;
+            return newInit;
         default : 
             return state;
 
