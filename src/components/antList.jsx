@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import store from '../store';
 import {changeInputValue, changeSubmitValue, deleteItem, initItem, getToDoList} from '../store/actionCreator';
 import AntListUI from './antListUI';
-
+import axios from 'axios';
 
 
 class AntList extends React.Component {
@@ -38,9 +38,9 @@ class AntList extends React.Component {
     }
 
     componentDidMount = () => {
-        const action = getToDoList();
+        axios.get('http://iwenwiki.com/api/blueberrypai/getIndexBanner.php')
+        .then(res => {console.log(res.banner)});
         
-        store.dispatch(action);
     }
 
 
