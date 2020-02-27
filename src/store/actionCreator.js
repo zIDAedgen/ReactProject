@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE, INIT} from './actionTypes';
+import {GET_LIST, CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE, INIT} from './actionTypes';
 
 export const changeInputValue = (value) => ({
     type : CHANGE_INPUT_VALUE,
@@ -35,4 +35,8 @@ export const getToDoList = () => {
 
     }
 }
+
+export const sagaList = () => ({
+    type : GET_LIST
+})
 

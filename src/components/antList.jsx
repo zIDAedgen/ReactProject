@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import store from '../store';
-import {changeInputValue, changeSubmitValue, deleteItem, initItem, getToDoList} from '../store/actionCreator';
+import {sagaList, changeInputValue, changeSubmitValue, deleteItem, initItem, getToDoList} from '../store/actionCreator';
 import AntListUI from './antListUI';
 import axios from 'axios';
 
@@ -38,8 +38,20 @@ class AntList extends React.Component {
     }
 
     componentDidMount = () => {
+        /*
         axios.get('http://iwenwiki.com/api/blueberrypai/getIndexBanner.php')
-        .then(res => {console.log(res.banner)});
+        .then(res => {
+            let copy = [];
+            console.log(res.data.banner)
+            res.data.banner.forEach(item => {
+                copy.push(item.title);
+            })
+            const action = initItem(copy);
+            store.dispatch(action);
+        });
+        */
+       const action = sagaList();
+       store.dispatch(action);
         
     }
 
